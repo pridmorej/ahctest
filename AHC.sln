@@ -7,6 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "a2b", "a2b\a2b.csproj", "{B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "a2btest", "a2btest\a2btest.csproj", "{4D57D541-48FE-4466-8016-83D76C262B26}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "documents", "documents", "{64715544-8658-4AD4-8FD7-4F6A5E0C125E}"
+	ProjectSection(SolutionItems) = preProject
+		documents\Advanced Health & Care Project Approach Jeremy Pridmore 13-03-2015.docx = documents\Advanced Health & Care Project Approach Jeremy Pridmore 13-03-2015.docx
+		documents\Programming Test.doc = documents\Programming Test.doc
+		documents\words-english.zip = documents\words-english.zip
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
