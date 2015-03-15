@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "documents", "documents", "{
 	ProjectSection(SolutionItems) = preProject
 		documents\Advanced Health & Care Project Approach Jeremy Pridmore 13-03-2015.docx = documents\Advanced Health & Care Project Approach Jeremy Pridmore 13-03-2015.docx
 		documents\Programming Test.doc = documents\Programming Test.doc
+		documents\usecases.vsd = documents\usecases.vsd
 		documents\words-english.zip = documents\words-english.zip
 	EndProjectSection
 EndProject
