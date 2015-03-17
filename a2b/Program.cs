@@ -18,6 +18,7 @@ namespace a2b
             catch (Exception e)
             {
                 Console.Error.WriteLine(e.Message);
+                Console.ReadLine();
             }
         }
     }

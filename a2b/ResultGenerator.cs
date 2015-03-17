@@ -88,7 +88,7 @@ namespace a2b
                         else if (frontier.Contains(neighbour))
                         {
                             // ...with higher cost
-                            if (neighbour.Distance > cost)
+                            if (neighbour.Distance < cost)
                             {
                                 // replace existing node with n
                                 while (!neighbour.Equals((SearchNode)frontier.Peek()))
@@ -102,54 +102,6 @@ namespace a2b
                     }
                 }
             }
-
-            /*
-            // Need to now perform the actual search.
-            startNode.Visited = true;
-            shortest.Push(startNode);
-
-            // Are the Start and End the same?  If so, just return the one item on the result stack.
-            if (startNode.Equals(_ss.EndNode)) { return shortest; }
-
-            // Need to start searching.
-            int distance = 0;
-
-
-            while (searchCandidates.Count > 0)
-            {
-                    shortest.Push(neighbour);
-
-                    if (neighbour.Equals(_ss.EndNode))
-                    {
-                        // Found endnode, so check if the max length found so far is less than the distance travelled.  If so, then found a shorter route.
-                        if (current.Distance + 1 < length)
-                        {
-                            length = current.Distance + 1;
-                        }
-                        else
-                        {
-                            // found end node, but distance is longer than shortest found so far.
-                        }
-                    }
-                    else
-                    {
-                        // Not endnode, so add to stack of search candidates if not already visited.
-                        if (!neighbour.Visited)
-                        {
-                            neighbour.Visited = true;
-                            neighbour.Distance = current.Distance + 1;
-                            searchCandidates.Push(neighbour);
-                        }
-                    }
-
-                    shortest.Pop(); // Discard.
-                }
-
-                // Once pushed all candidates onto list, pop the next search candidate.
-                current = (SearchNode)searchCandidates.Pop();
-            }*/
-
-            return solution;
         }
     }
 }

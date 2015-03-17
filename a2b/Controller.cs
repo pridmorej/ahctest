@@ -117,6 +117,7 @@ namespace a2b
             {
                 // NOTE: Would normally inject an error logger into this controller.
                 Console.Error.WriteLine(e.Message);
+                Console.ReadLine();
             }
         }
     }
