@@ -55,7 +55,14 @@ namespace a2b
                         current = current.Previous;
                     }
                     solution.Push(current);
-                    return solution;
+
+                    // Need to reverse the stack.
+                    ResultPath reversed = new ResultPath();
+                    while (solution.Count > 0)
+                    {
+                        reversed.Push(solution.Pop());
+                    }
+                    return reversed;
                 }
 
                 // explored.add(node)
