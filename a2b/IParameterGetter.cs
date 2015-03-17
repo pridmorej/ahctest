@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace a2b
 {
-    public class Dictionary
+    public interface IParameterGetter
     {
-        public Words Words { get; private set; }
+        Parameters GetParameters();
     }
 }

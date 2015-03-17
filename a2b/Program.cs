@@ -10,6 +10,15 @@ namespace a2b
     {
         static void Main(string[] args)
         {
+            try
+            {
+                Controller c = ControllerFactory.GetInstance();
+                c.Execute();
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(e.Message);
+            }
         }
     }
 }

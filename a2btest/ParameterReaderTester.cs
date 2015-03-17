@@ -16,10 +16,8 @@ namespace a2btest
         {
             string[] args = new string[5] { "a2b.exe", "words-english.txt", "Start", "End", "results.txt" };
 
-            ParameterReader pr = new ParameterReader();
-            Parameters p = new Parameters();
-
-            pr.Read(args, p);
+            ParameterReader pr = new ParameterReader(args);
+            Parameters p = pr.GetParameters();
 
             Assert.That(p.DictionaryFileName == args[1]);
             Assert.That(p.StartWord == args[2]);

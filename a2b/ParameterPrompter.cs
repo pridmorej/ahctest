@@ -7,25 +7,38 @@ using System.Threading.Tasks;
 
 namespace a2b
 {
-    public class ParameterPrompter
+    public class ParameterPrompter : IParameterGetter
     {
-        public Parameters Prompt(StreamWriter output, StreamReader input, Parameters p)
+
+        private TextWriter _output;
+        private TextReader _input;
+
+        public ParameterPrompter(TextWriter output, TextReader input)
         {
-            if (output == null) { throw new ArgumentNullException("output stream cannot be null."); }
-            if (input == null) { throw new ArgumentNullException("input stream cannot be null."); }
+            _output = output;
+            _input = input;
+        }
+
+        public Parameters GetParameters()
+        {
+            Parameters p = new Parameters();
+
+            if (_output == null) { throw new ArgumentNullException("output stream cannot be null."); }
+            if (_input == null) { throw new ArgumentNullException("input stream cannot be null."); }
+
             if (p == null) { throw new ArgumentNullException("parameters cannot be null."); }
 
-            output.WriteLine("Enter the name of the Dictionary file: ");
-            p.DictionaryFileName = input.ReadLine();
+            _output.WriteLine("Enter the name of the Dictionary file: ");
+            p.DictionaryFileName = _input.ReadLine();
 
-            output.WriteLine("Enter the Start Word: ");
-            p.StartWord = input.ReadLine();
+            _output.WriteLine("Enter the Start Word: ");
+            p.StartWord = _input.ReadLine();
 
-            output.WriteLine("Enter the End Word: ");
-            p.EndWord = input.ReadLine();
+            _output.WriteLine("Enter the End Word: ");
+            p.EndWord = _input.ReadLine();
 
-            output.WriteLine("Enter the name of the Results file: ");
-            p.ResultsFileName = input.ReadLine();
+            _output.WriteLine("Enter the name of the Results file: ");
+            p.ResultsFileName = _input.ReadLine();
 
             return p;
         }

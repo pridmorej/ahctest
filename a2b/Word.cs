@@ -30,6 +30,15 @@ namespace a2b
         /// <summary>
         /// A sorted array of letters (used when determining how may letters are different).
         /// </summary>
-        public char[] Letters { get { return String.Concat(this.Value.OrderBy(c => c)).ToCharArray(); } }
+        public char[] Letters
+        {
+            get
+            {
+                // NOTE: This is faster than using LINQ OrderBy.
+                char[] letters = this.Value.ToArray();
+                Array.Sort(letters);
+                return letters;
+            }
+        }
     }
 }

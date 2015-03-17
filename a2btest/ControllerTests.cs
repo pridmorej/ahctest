@@ -12,12 +12,19 @@ namespace a2btest
     [TestFixture]
     public class ControllerTests
     {
+        /// <summary>
+        /// 1.1.a	Test: Create an object responsible for controlling the process.
+        /// </summary>
         public void Create_NewController_IsNotNull()
         {
             Controller controller = ControllerFactory.GetInstance();
             Assert.IsNotNull(controller);
             Assert.IsInstanceOf<Controller>(controller);
         }
+
+        /// <summary>
+        /// 1.1.b	Test: Create an object responsible for controlling the process.
+        /// </summary>
         public void Create_NewController_IsInstanceOfController()
         {
             Controller controller = ControllerFactory.GetInstance();

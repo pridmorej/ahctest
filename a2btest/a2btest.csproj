@@ -63,11 +63,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControllerTests.cs" />
+    <Compile Include="DictionaryFileTests.cs" />
     <Compile Include="DictionaryReaderTests.cs" />
     <Compile Include="DictionaryTests.cs" />
+    <Compile Include="ParameterPrompterTests.cs" />
     <Compile Include="ParameterReaderTester.cs" />
     <Compile Include="ParametersTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResultFileTester.cs" />
     <Compile Include="ResultGeneratorTests.cs" />
     <Compile Include="ResultPathTests.cs" />
     <Compile Include="ResultWriterTests.cs" />

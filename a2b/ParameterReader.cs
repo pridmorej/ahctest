@@ -6,16 +6,25 @@ using System.Threading.Tasks;
 
 namespace a2b
 {
-    public class ParameterReader
+    public class ParameterReader : IParameterGetter
     {
-        public Parameters Read(string[] args, Parameters p)
-        {
-            if (args.Length != 5) { throw new ArgumentException("Invalid list of arguments provided."); }
+        private string[] _args;
 
-            p.DictionaryFileName = args[1];
-            p.StartWord = args[2];
-            p.EndWord = args[3];
-            p.ResultsFileName = args[4];
+        public ParameterReader(string[] args)
+        {
+            _args = args;
+        }
+
+        public Parameters GetParameters()
+        {
+            if (_args.Length != 5) { throw new ArgumentException("Invalid list of arguments provided."); }
+
+            Parameters p = new Parameters();
+
+            p.DictionaryFileName = _args[1];
+            p.StartWord = _args[2];
+            p.EndWord = _args[3];
+            p.ResultsFileName = _args[4];
 
             return p;
         }
