@@ -29,12 +29,11 @@ namespace a2btest
         }
 
         [Test]
-        public void Read_SortedWordLetters_AreInCorrectOrder()
+        public void Read_WordLetters_AreInCorrectOrder()
         {
             string s = "hello";
-            string t = "ehllo";
             Word w = new Word(s);
-            Assert.That(String.Compare(String.Concat(w.Letters), t) == 0);
+            Assert.That(s.Equals(String.Concat(w.Letters)));
         }
     }
 }

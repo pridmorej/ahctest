@@ -31,10 +31,10 @@ namespace a2btest
             
             Parameters p = pr.GetParameters();
 
-            Assert.That(String.Compare(p.DictionaryFileName, lines[0]) == 0);
-            Assert.That(String.Compare(p.StartWord, lines[1]) == 0);
-            Assert.That(String.Compare(p.EndWord, lines[2]) == 0);
-            Assert.That(String.Compare(p.ResultsFileName, lines[3]) == 0);
+            Assert.That(p.DictionaryFileName.Equals(lines[0]));
+            Assert.That(p.StartWord.Equals(lines[1]));
+            Assert.That(p.EndWord.Equals(lines[2]));
+            Assert.That(p.ResultsFileName.Equals(lines[3]));
         }
     }
 

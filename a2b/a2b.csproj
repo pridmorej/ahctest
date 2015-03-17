@@ -45,8 +45,11 @@
     <Compile Include="Dictionary.cs" />
     <Compile Include="DictionaryFile.cs" />
     <Compile Include="DictionaryReader.cs" />
+    <Compile Include="IDictionaryReader.cs" />
     <Compile Include="IParameterGetter.cs" />
+    <Compile Include="IResultGenerator.cs" />
     <Compile Include="IResultWriter.cs" />
+    <Compile Include="ISearchPreparer.cs" />
     <Compile Include="ParameterGetterFactory.cs" />
     <Compile Include="ParameterPrompter.cs" />
     <Compile Include="ParameterReader.cs" />

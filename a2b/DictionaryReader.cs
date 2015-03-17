@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace a2b
 {
-    public class DictionaryReader
+    public class DictionaryReader : IDictionaryReader
     {
         public Dictionary Read(DictionaryFile file)
         {

@@ -15,7 +15,7 @@ namespace a2b
         public SearchNode(Word word)
         {
             this.Word = word;
-            this.NextWords = new Words();
+            this.Neighbours = new List<SearchNode>();
         }
 
         /// <summary>
@@ -29,13 +29,8 @@ namespace a2b
         public bool Visited { get; set; }
 
         /// <summary>
-        /// A list of related words.
+        /// A list of linked SearchNodes.
         /// </summary>
-        public Words NextWords { get; set; }
-
-        /// <summary>
-        /// The previous word.
-        /// </summary>
-        public Word BackWord { get; set; }
+        public List<SearchNode> Neighbours { get; set; }
     }
 }

@@ -19,10 +19,14 @@ namespace a2b
     /// </summary>
     public class Controller : AbstractController
     {
+        // NOTE: The structures are concrete.  The 'doers' are interfaces.
         protected Parameters _p;
         protected Dictionary _d;
         protected DictionaryFile _df;
-        protected DictionaryReader _dr;
+        protected IDictionaryReader _dr;
+        protected ISearchPreparer _sp;
+        protected SearchStructure _ss;
+        protected IResultGenerator _rg;
         protected ResultPath _rp;
         protected ResultFile _rf;
         protected IResultWriter _rw;
@@ -48,11 +52,15 @@ namespace a2b
         }
         
         public override void PrepareForSearch() 
-        { 
+        {
+            _sp = (ISearchPreparer)new SearchPreparer(_p, _d);
+            _ss = _sp.Prepare();
         }
         
         public override void ExecuteSearch() 
-        { 
+        {
+            _rg = (IResultGenerator)new ResultGenerator(_ss);
+            _rp = _rg.Generate();
         }
         
         public override void PrepareResults()
@@ -72,7 +80,7 @@ namespace a2b
     /// Abstract Controller defines the order of the operations.
     /// </summary>
     /// <remarks>
-    /// Experimenting with Template Pattern here.
+    /// Experimenting with Template Pattern here so that each step can be replaced with an alternative implementation in a derived class.
     /// </remarks>
     public abstract class AbstractController
     {

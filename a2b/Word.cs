@@ -28,17 +28,36 @@ namespace a2b
         public int Length { get { return this.Value.Length; } }
 
         /// <summary>
-        /// A sorted array of letters (used when determining how may letters are different).
+        /// An array of letters (used when determining how may letters are different).
         /// </summary>
         public char[] Letters
         {
             get
             {
-                // NOTE: This is faster than using LINQ OrderBy.
-                char[] letters = this.Value.ToArray();
-                Array.Sort(letters);
-                return letters;
+                return this.Value.ToArray();
             }
+        }
+
+        /// <summary>
+        /// Tests whether a word is one letter different to the given word.
+        /// </summary>
+        /// <remarks>
+        /// Jumps out of the comparison as soon as more than one character difference has been found.
+        /// In terms of this particular test, duplicates are removed, so the cases of full length comparisons being made will be minimal.
+        /// </remarks>
+        /// <param name="word"></param>
+        /// <returns></returns>
+        public bool IsOneLetterDifferentTo(Word word)
+        {
+            char[] a = this.Letters;
+            char[] b = word.Letters;
+            int c = 0;
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (!a[i].Equals(b[i])) { c++; }
+                if (c > 1) { return false; }
+            }
+            return c == 1;
         }
     }
 }

@@ -37,18 +37,21 @@ namespace a2btest
         }
 
         [Test]
-        public void SetGetProperty_BackWord_IsCorrect()
+        public void SetGetProperty_Neighbours_IsCorrect()
         {
-            string s = "hello";
-            string t = "back";
-            Word w = new Word(s);
-            Word b = new Word(t);
-            SearchNode sn = new SearchNode(w);
+            string sa = "hello";
+            string sb = "back";
+            Word wa = new Word(sa);
+            Word wb = new Word(sb);
+            SearchNode sna = new SearchNode(wa);
+            SearchNode snb = new SearchNode(wb);
 
-            sn.BackWord = b;
+            sna.Neighbours.Add(snb);
 
-            Assert.AreSame(sn.BackWord, b);
-            Assert.AreEqual(sn.BackWord.Value, t);
+            CollectionAssert.Contains(sna.Neighbours, snb);
+            Assert.AreSame(sna.Neighbours[0], snb);
+            Assert.AreSame(sna.Neighbours[0].Word, snb.Word);
+            Assert.AreEqual(sna.Neighbours[0].Word.Value, sb);
         }
     }
 }
