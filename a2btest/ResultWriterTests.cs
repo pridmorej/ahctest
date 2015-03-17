@@ -28,7 +28,7 @@ namespace a2btest
             ResultPath rp = new ResultPath();
             foreach (string result in results)
             {
-                rp.Push(result);
+                rp.Push(new SearchNode(new Word(result)));
             }
 
             // Write the results.

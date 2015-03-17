@@ -14,7 +14,7 @@ namespace a2b
         public static IParameterGetter GetInstance()
         {
             string[] args = Environment.GetCommandLineArgs();
-            if (args != null && args.Length == 0)
+            if (args != null && args.Length > 1)
             {
                 return new ParameterReader(args);
             }

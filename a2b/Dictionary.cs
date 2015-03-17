@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace a2b
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Dictionary
     {
-        public Words Words { get; private set; }
+        // TODO: The Dictionary class is now superfluous.  I can just represent the dictionary with the Words class.  Therefore need to factor out use of this Dictionary class.
+        public Dictionary()
+        {
+            this.Words = new Words();
+        }
+
+        public Words Words { get; protected set; }
     }
 }

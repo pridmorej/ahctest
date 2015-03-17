@@ -20,9 +20,9 @@ namespace a2b
             results.EnsureCapacity(this.Count);
 
             // Need to add results in reverse order as this is a stack.
-            foreach (string result in this)
+            foreach (SearchNode result in this)
             {
-                results.Insert(0, result + Environment.NewLine);
+                results.Insert(0, result.Word.Value + Environment.NewLine);
             }
 
             return results.ToString();

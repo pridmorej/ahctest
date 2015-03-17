@@ -12,5 +12,6 @@ namespace a2btest
     [TestFixture]
     public class ResultGeneratorTests
     {
+        
     }
 }

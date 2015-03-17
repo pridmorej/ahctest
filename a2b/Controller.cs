@@ -40,12 +40,19 @@ namespace a2b
         {
             IParameterGetter pg = ParameterGetterFactory.GetInstance();
             _p = pg.GetParameters();
+
+            // Validate parameters.
+            if (String.IsNullOrEmpty(_p.DictionaryFileName)) { throw new ArgumentException("Dictionary File Name was not specified."); }
+            if (String.IsNullOrEmpty(_p.StartWord)) { throw new ArgumentException("Start Word was not specified."); }
+            if (String.IsNullOrEmpty(_p.EndWord)) { throw new ArgumentException("End Word was not specified."); }
+            if (String.IsNullOrEmpty(_p.ResultsFileName)) { throw new ArgumentException("Results File Name was not specified."); }
         }
 
         public override void LoadDictionary() 
         {
             _df = new DictionaryFile();
             _df.Name = _p.DictionaryFileName;
+            _df.WordLengthFilter = _p.StartWord.Length;
 
             _dr = new DictionaryReader();
             _d = _dr.Read(_df);
@@ -97,12 +104,20 @@ namespace a2b
 
         public void Execute()
         {
-            PromptForParameters();
-            LoadDictionary();
-            PrepareForSearch();
-            ExecuteSearch();
-            PrepareResults();
-            WriteResults();        
+            try
+            {
+                PromptForParameters();
+                LoadDictionary();
+                PrepareForSearch();
+                ExecuteSearch();
+                PrepareResults();
+                WriteResults();
+            }
+            catch (Exception e)
+            {
+                // NOTE: Would normally inject an error logger into this controller.
+                Console.Error.WriteLine(e.Message);
+            }
         }
     }
 }

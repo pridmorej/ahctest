@@ -66,6 +66,7 @@
     <Compile Include="DictionaryFileTests.cs" />
     <Compile Include="DictionaryReaderTests.cs" />
     <Compile Include="DictionaryTests.cs" />
+    <Compile Include="MockResultGenerator.cs" />
     <Compile Include="ParameterPrompterTests.cs" />
     <Compile Include="ParameterReaderTester.cs" />
     <Compile Include="ParametersTests.cs" />

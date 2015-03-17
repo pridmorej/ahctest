@@ -14,6 +14,7 @@ namespace a2b
         /// <param name="word"></param>
         public SearchNode(Word word)
         {
+            this.Distance = 0;
             this.Word = word;
             this.Neighbours = new List<SearchNode>();
         }
@@ -29,8 +30,18 @@ namespace a2b
         public bool Visited { get; set; }
 
         /// <summary>
+        /// Distance from the start of the search (only set when visited).
+        /// </summary>
+        public int Distance { get; set; }
+
+        /// <summary>
         /// A list of linked SearchNodes.
         /// </summary>
         public List<SearchNode> Neighbours { get; set; }
+
+        /// <summary>
+        /// A link back to the previous search node when following a path.
+        /// </summary>
+        public SearchNode Previous { get; set; }
     }
 }
