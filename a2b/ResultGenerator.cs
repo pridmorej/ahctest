@@ -88,7 +88,7 @@ namespace a2b
                         else if (frontier.Contains(neighbour))
                         {
                             // ...with higher cost
-                            if (neighbour.Distance < cost)
+                            if (neighbour.Distance > cost)
                             {
                                 // replace existing node with n
                                 while (!neighbour.Equals((SearchNode)frontier.Peek()))
