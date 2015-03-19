@@ -23,11 +23,11 @@ namespace a2b
 
                 // Set references to the StartWord and EndWord as they are loaded.
                 // NOTE: I would probably raise an event here to notify the caller that a node was added, so that the Parameters don't have to be passed in here.
-                if (word.Value.Equals(p.StartWord))
+                if (word.Value.Equals(p.StartWord, StringComparison.CurrentCultureIgnoreCase))
                 {
                     this.StartNode = sn;
                 }
-                if (word.Value.Equals(p.EndWord))
+                if (word.Value.Equals(p.EndWord, StringComparison.CurrentCultureIgnoreCase))
                 {
                     this.EndNode = sn;
                 }
@@ -37,7 +37,6 @@ namespace a2b
         public void AddLink(SearchNode from, SearchNode to)
         {
             from.Neighbours.Add(to);
-            to.Neighbours.Add(from);
         }
     }
 }

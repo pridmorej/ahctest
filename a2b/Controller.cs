@@ -6,14 +6,6 @@ using System.Threading.Tasks;
 
 namespace a2b
 {
-    public static class ControllerFactory
-    {
-        public static Controller GetInstance()
-        {
-            return new Controller();
-        }
-    }
-
     /// <summary>
     /// This concrete controller implements each of the operations.
     /// </summary>
@@ -23,13 +15,9 @@ namespace a2b
         protected Parameters _p;
         protected Dictionary _d;
         protected DictionaryFile _df;
-        protected IDictionaryReader _dr;
-        protected ISearchPreparer _sp;
         protected SearchStructure _ss;
-        protected IResultGenerator _rg;
         protected ResultPath _rp;
         protected ResultFile _rf;
-        protected IResultWriter _rw;
 
         public Controller()
             : base()
@@ -54,19 +42,19 @@ namespace a2b
             _df.Name = _p.DictionaryFileName;
             _df.WordLengthFilter = _p.StartWord.Length;
 
-            _dr = new DictionaryReader();
+            IDictionaryReader _dr = new DictionaryReader();
             _d = _dr.Read(_df);
         }
         
         public override void PrepareForSearch() 
         {
-            _sp = (ISearchPreparer)new SearchPreparer(_p, _d);
+            ISearchPreparer _sp = new SearchPreparer(_p, _d);
             _ss = _sp.Prepare();
         }
         
-        public override void ExecuteSearch() 
+        public override void GenerateResult() 
         {
-            _rg = (IResultGenerator)new ResultGenerator(_ss);
+            IResultGenerator _rg = new ResultGenerator(_ss);
             _rp = _rg.Generate();
         }
         
@@ -78,7 +66,7 @@ namespace a2b
 
         public override void WriteResults()
         {
-            _rw = (IResultWriter)new ResultWriter(_rf, _rp);
+            IResultWriter _rw = new ResultWriter(_rf, _rp);
             _rw.Write();
         }
     }
@@ -89,7 +77,7 @@ namespace a2b
     /// <remarks>
     /// Experimenting with Template Pattern here so that each step can be replaced with an alternative implementation in a derived class.
     /// </remarks>
-    public abstract class AbstractController
+    public abstract class AbstractController : IController
     {
         public AbstractController()
         {
@@ -98,7 +86,7 @@ namespace a2b
         public abstract void PromptForParameters();
         public abstract void LoadDictionary();
         public abstract void PrepareForSearch();
-        public abstract void ExecuteSearch();
+        public abstract void GenerateResult();
         public abstract void PrepareResults();
         public abstract void WriteResults();
 
@@ -109,7 +97,7 @@ namespace a2b
                 PromptForParameters();
                 LoadDictionary();
                 PrepareForSearch();
-                ExecuteSearch();
+                GenerateResult();
                 PrepareResults();
                 WriteResults();
             }

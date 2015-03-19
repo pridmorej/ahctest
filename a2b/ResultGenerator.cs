@@ -20,87 +20,76 @@ namespace a2b
             // node ← start
             SearchNode startNode = _ss.StartNode;
 
-            // cost ← 0
-            int cost = 0; // _ss.SearchNodes.Count;
-            
             // frontier ← priority queue containing node only
-            ResultPath frontier = new ResultPath();
-            frontier.Push(startNode);
+            PriorityQueue<SearchNode> frontier = new PriorityQueue<SearchNode>();
+            frontier.Enqueue(startNode);
 
             // explored ← empty set
             List<SearchNode> explored = new List<SearchNode>();
 
-            ResultPath solution = new ResultPath();
-
-            // do
-            while (true)
+            // do while frontier is not empty
+            while (frontier.Count > 0)
             {
-                // if frontier is empty
-                if (frontier.Count == 0)
-                {
-                    // return failure
-                    throw new Exception("Cannot find path from start to finish.");
-                }
-
                 // node := frontier.pop()
-                SearchNode current = (SearchNode)frontier.Pop();
-
-                // if node is goal
-                if (current.Equals(_ss.EndNode))
-                {
-                    // return solution
-                    while (!current.Equals(startNode))
-                    {
-                        solution.Push(current);
-                        current = current.Previous;
-                    }
-                    solution.Push(current);
-
-                    // Need to reverse the stack.
-                    ResultPath reversed = new ResultPath();
-                    while (solution.Count > 0)
-                    {
-                        reversed.Push(solution.Pop());
-                    }
-                    return reversed;
-                }
-
-                // explored.add(node)
-                explored.Add(current);
-                cost++;
+                SearchNode node = (SearchNode)frontier.Dequeue();
 
                 // for each of node's neighbors n
-                foreach (SearchNode neighbour in current.Neighbours)
+                foreach (SearchNode n in node.Neighbours)
                 {
 
                     // if n is not in explored
-                    if (!explored.Contains(neighbour))
+                    if (!explored.Contains(n))
                     {
                         // if n is not in frontier
-                        if (!frontier.Contains(neighbour))
+                        if (!frontier.Contains(n))
                         {
                             // frontier.add(n)
-                            frontier.Push(neighbour);
-                            neighbour.Distance = cost;
-                            neighbour.Previous = current;
+                            n.Previous = node;
+                            n.Distance = n.DistanceFrom(startNode);
+                            frontier.Enqueue(n);
                         }
                         // else if n is in frontier ...
-                        else if (frontier.Contains(neighbour))
+                        else //if (frontier.Contains(n))
                         {
                             // ...with higher cost
-                            if (neighbour.Distance > cost)
+                            if (n.Distance > node.Distance)
                             {
                                 // replace existing node with n
-                                while (!neighbour.Equals((SearchNode)frontier.Peek()))
-                                {
-                                    frontier.Pop(); // Discard.
-                                }
-                                current = neighbour;
-                                cost = neighbour.Distance;
+                                n.Previous = node;
                             }
                         }
                     }
                 }
+
+                // explored.add(node)
+                explored.Add(node);
+            }
+
+            try
+            {
+                ResultPath solution = new ResultPath();
+                SearchNode node = _ss.EndNode;
+                
+                // return solution
+                while (!node.Equals(startNode))
+                {
+                    solution.Push(node);
+                    node = node.Previous;
+                }
+                solution.Push(node);
+
+                // Need to reverse the stack.
+                ResultPath reversed = new ResultPath();
+                while (solution.Count > 0)
+                {
+                    reversed.Push(solution.Pop());
+                }
+                return reversed;
+            }
+            catch
+            {
+                // return failure
+                throw new Exception("Cannot find path from start to end.");
             }
         }
     }

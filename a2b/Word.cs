@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace a2b
 {
     /// <summary>
-    /// Represents a word from the Dictionary
+    /// Represents a word from the Dictionary (lower case)
     /// </summary>
     public class Word
     {
@@ -20,7 +20,7 @@ namespace a2b
         /// <summary>
         /// The actual word.
         /// </summary>
-        public string Value { get; set; }
+        public string Value { get; protected set; }
 
         /// <summary>
         /// The length of the word.
@@ -30,11 +30,14 @@ namespace a2b
         /// <summary>
         /// An array of letters (used when determining how may letters are different).
         /// </summary>
+        /// <remarks>
+        /// The word is converted to lower case in order to make the character comparison case-insensitive.
+        /// </remarks>
         public char[] Letters
         {
             get
             {
-                return this.Value.ToArray();
+                return this.Value.ToLower().ToArray();
             }
         }
 

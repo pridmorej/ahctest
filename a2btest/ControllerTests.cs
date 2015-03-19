@@ -17,7 +17,7 @@ namespace a2btest
         /// </summary>
         public void Create_NewController_IsNotNull()
         {
-            Controller controller = ControllerFactory.GetInstance();
+            IController controller = ControllerFactory.GetInstance();
             Assert.IsNotNull(controller);
             Assert.IsInstanceOf<Controller>(controller);
         }
@@ -27,7 +27,7 @@ namespace a2btest
         /// </summary>
         public void Create_NewController_IsInstanceOfController()
         {
-            Controller controller = ControllerFactory.GetInstance();
+            IController controller = ControllerFactory.GetInstance();
             Assert.IsInstanceOf<Controller>(controller);
         }
     }

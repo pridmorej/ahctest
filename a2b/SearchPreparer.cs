@@ -21,8 +21,12 @@ namespace a2b
         {
             SearchStructure ss = new SearchStructure(_d.Words, _p);
 
+            if (ss.StartNode == null) { throw new Exception("StartWord was not found in the dictionary."); }
+            if (ss.EndNode == null) { throw new Exception("EndWord was not found in the dictionary."); }
+
             // Now need to do the expensive bit of linking all the words which are only one letter different.
             // Unfortunately, I don't know of a more efficient way of doing this other than n(2).
+            // UPDATE: I noted that I was duplicating links, so I removed one of the links from the "AddLink" method.
             foreach (SearchNode n1 in ss.SearchNodes)
             {
                 foreach (SearchNode n2 in ss.SearchNodes)

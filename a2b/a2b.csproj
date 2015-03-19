@@ -42,9 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller.cs" />
+    <Compile Include="ControllerFactory.cs" />
     <Compile Include="Dictionary.cs" />
     <Compile Include="DictionaryFile.cs" />
     <Compile Include="DictionaryReader.cs" />
+    <Compile Include="IController.cs" />
     <Compile Include="IDictionaryReader.cs" />
     <Compile Include="IParameterGetter.cs" />
     <Compile Include="IResultGenerator.cs" />
@@ -54,6 +56,7 @@
     <Compile Include="ParameterPrompter.cs" />
     <Compile Include="ParameterReader.cs" />
     <Compile Include="Parameters.cs" />
+    <Compile Include="PriorityQueue.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResultFile.cs" />
