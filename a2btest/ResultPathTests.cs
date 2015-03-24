@@ -13,25 +13,24 @@ namespace a2btest
     public class ResultPathTests
     {
         [Test]
-        public void Push_ItemOnToResultPath_AddsItemToStack()
+        public void Add_ItemOnToResultPath_AddsItemToList()
         {
             ResultPath rp = new ResultPath();
-            string a = "a";
+            SearchNode a = new SearchNode(new Word("a"));
 
-            rp.Push(a); // NOTE: Boxing string to reference type.
+            rp.Add(a);
 
             CollectionAssert.Contains(rp, a);
         }
 
         [Test]
-        public void Pop_ItemOffOfResultPath_RemovesItemFromStack()
+        public void Remove_ItemOffOfResultPath_RemovesItemFromList()
         {
             ResultPath rp = new ResultPath();
-            string a = "a";
+            SearchNode a = new SearchNode(new Word("a"));
 
-            rp.Push(a); // NOTE: Boxing string value type to reference type.
-
-            a = (string)rp.Pop();  // NOTE: Unboxing reference type to string value type.
+            rp.Add(a);
+            rp.Remove(a);
 
             CollectionAssert.DoesNotContain(rp, a);
         }

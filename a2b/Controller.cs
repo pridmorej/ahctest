@@ -12,7 +12,6 @@ namespace a2b
     public class Controller : AbstractController
     {
         // NOTE: The structures are concrete.  The 'doers' are interfaces.
-        protected Parameters _p;
         protected Dictionary _d;
         protected DictionaryFile _df;
         protected SearchStructure _ss;
@@ -22,18 +21,6 @@ namespace a2b
         public Controller()
             : base()
         {
-        }
-
-        public override void PromptForParameters()
-        {
-            IParameterGetter pg = ParameterGetterFactory.GetInstance();
-            _p = pg.GetParameters();
-
-            // Validate parameters.
-            if (String.IsNullOrEmpty(_p.DictionaryFileName)) { throw new ArgumentException("Dictionary File Name was not specified."); }
-            if (String.IsNullOrEmpty(_p.StartWord)) { throw new ArgumentException("Start Word was not specified."); }
-            if (String.IsNullOrEmpty(_p.EndWord)) { throw new ArgumentException("End Word was not specified."); }
-            if (String.IsNullOrEmpty(_p.ResultsFileName)) { throw new ArgumentException("Results File Name was not specified."); }
         }
 
         public override void LoadDictionary() 
@@ -79,22 +66,34 @@ namespace a2b
     /// </remarks>
     public abstract class AbstractController : IController
     {
+        protected Parameters _p;
+
         public AbstractController()
         {
         }
 
-        public abstract void PromptForParameters();
         public abstract void LoadDictionary();
         public abstract void PrepareForSearch();
         public abstract void GenerateResult();
         public abstract void PrepareResults();
         public abstract void WriteResults();
 
-        public void Execute()
+        public void Execute(string DictionaryFileName, string StartWord, string EndWord, string ResultsFileName)
         {
             try
             {
-                PromptForParameters();
+                // Validate parameters.
+                if (String.IsNullOrEmpty(DictionaryFileName)) { throw new ArgumentException("Dictionary File Name was not specified."); }
+                if (String.IsNullOrEmpty(StartWord)) { throw new ArgumentException("Start Word was not specified."); }
+                if (String.IsNullOrEmpty(EndWord)) { throw new ArgumentException("End Word was not specified."); }
+                if (String.IsNullOrEmpty(ResultsFileName)) { throw new ArgumentException("Results File Name was not specified."); }
+
+                _p = new Parameters();
+                _p.DictionaryFileName = DictionaryFileName;
+                _p.StartWord = StartWord;
+                _p.EndWord = EndWord;
+                _p.ResultsFileName = ResultsFileName;
+
                 LoadDictionary();
                 PrepareForSearch();
                 GenerateResult();

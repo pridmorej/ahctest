@@ -22,8 +22,12 @@ namespace a2b
         {
             try
             {
+                // First get the parameters, then pass them into the controller.
+                IParameterGetter pg = ParameterGetterFactory.GetInstance();
+                Parameters p = pg.GetParameters();
+
                 IController c = ControllerFactory.GetInstance();
-                c.Execute();
+                c.Execute(p.DictionaryFileName, p.StartWord, p.EndWord, p.ResultsFileName);
             }
             catch (Exception e)
             {

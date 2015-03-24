@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace a2b
 {
-    public class ResultPath : Stack
+    public class ResultPath : List<SearchNode>
     {
         /// <summary>
-        /// Converts the stack of results to a string with each result on a new line.
+        /// Converts the list of results to a string with each result on a new line.
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -18,13 +18,10 @@ namespace a2b
             // Use stringbuilder as more efficient than concatenating strings.
             StringBuilder results = new StringBuilder();
             results.EnsureCapacity(this.Count);
-
-            // Need to add results in reverse order as this is a stack.
             foreach (SearchNode result in this)
             {
-                results.Insert(0, result.Word.Value + Environment.NewLine);
+                results.AppendLine(result.Word.Value);
             }
-
             return results.ToString();
         }
     }

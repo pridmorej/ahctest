@@ -52,7 +52,7 @@ namespace a2b
         }
 
         /// <summary>
-        /// Implementes IComparable for use in the PriorityQueue.
+        /// Implements IComparable for use in the PriorityQueue.
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>

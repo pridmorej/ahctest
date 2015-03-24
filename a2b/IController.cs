@@ -8,6 +8,6 @@ namespace a2b
 {
     public interface IController
     {
-        void Execute();
+        void Execute(string DictionaryFileName, string StartWord, string EndWord, string ResultsFileName);
     }
 }

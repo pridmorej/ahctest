@@ -67,24 +67,18 @@ namespace a2b
 
             try
             {
+                // Build prepare the resultpath, adding nodes in reverse order.
                 ResultPath solution = new ResultPath();
                 SearchNode node = _ss.EndNode;
-                
-                // return solution
                 while (!node.Equals(startNode))
                 {
-                    solution.Push(node);
+                    solution.Insert(0, node);
                     node = node.Previous;
                 }
-                solution.Push(node);
+                solution.Insert(0, node);
 
-                // Need to reverse the stack.
-                ResultPath reversed = new ResultPath();
-                while (solution.Count > 0)
-                {
-                    reversed.Push(solution.Pop());
-                }
-                return reversed;
+                // return solution
+                return solution;
             }
             catch
             {

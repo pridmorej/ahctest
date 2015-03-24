@@ -17,9 +17,9 @@ namespace a2btest
         {
             // Create the results.
             ResultPath expected = new ResultPath();
-            expected.Push (new SearchNode(new Word("Spin")));
-            expected.Push (new SearchNode(new Word("Spit")));
-            expected.Push (new SearchNode(new Word("Spot")));
+            expected.Add (new SearchNode(new Word("Spin")));
+            expected.Add(new SearchNode(new Word("Spit")));
+            expected.Add(new SearchNode(new Word("Spot")));
             
             Parameters p = new Parameters();
             Dictionary d = new Dictionary();
@@ -49,9 +49,11 @@ namespace a2btest
 
             while (expected.Count > 0 && rp.Count > 0)
             {
-                e = (SearchNode)expected.Pop();
-                a = (SearchNode)rp.Pop();
+                e = (SearchNode)expected[0];
+                a = (SearchNode)rp[0];
                 Assert.AreEqual(e.Word.Value, a.Word.Value);
+                expected.RemoveAt(0);
+                rp.RemoveAt(0);
             }
         }
     }
